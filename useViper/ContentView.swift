@@ -8,19 +8,30 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @ObservedObject var contentPresenter: ContentPresenter
+    @State var isPresented = false
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        NavigationView {
+            VStack {
+                
+                Text(contentPresenter.greeting)
+                Button {
+                    contentPresenter.displayInteractorGreeting(isPresented: $isPresented)
+                } label: {
+                    Text("Tap me !")
+                }
+                NavigationLink(destination: SecondaryView(), isActive: $isPresented){
+                    EmptyView()
+                }
+            }
+            .padding()
         }
-        .padding()
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(contentPresenter: ContentPresenter(interactor: ContentInteractor(), router: ContentRouter()))
     }
 }

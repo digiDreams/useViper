@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct useViperApp: App {
+    @StateObject var presenter = ContentPresenter(interactor: ContentInteractor(), router: ContentRouter())
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(contentPresenter: presenter)
+            
         }
     }
 }
