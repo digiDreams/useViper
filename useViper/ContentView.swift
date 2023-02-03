@@ -12,24 +12,41 @@ struct ContentView: View {
     @ObservedObject var contentPresenter: ContentPresenter
     @State var isPresented = false
     var body: some View {
-        NavigationView {
-            VStack {
-                
-                Text(contentPresenter.greeting)
-                Button {
+        if #available(iOS 16.0, *) {
+            NavigationStack {
+                VStack {
+                    Text("Version => iOS 16")
+                    Text(contentPresenter.greeting)
+                    Button {
                     contentPresenter.displayInteractorGreeting(isPresented: $isPresented)
-                } label: {
+                    }label: {
                     Text("Tap me !")
+                    }
                 }
-                NavigationLink(destination: SecondaryView(), isActive: $isPresented){
-                    EmptyView()
+                .navigationDestination(isPresented: $isPresented) {
+                    SecondaryView()
                 }
             }
-            .padding()
+        } else {
+            
+            NavigationView {
+                VStack {
+                    Text("Version < iOS 16")
+                    Text(contentPresenter.greeting)
+                    Button {
+                        contentPresenter.displayInteractorGreeting(isPresented: $isPresented)
+                    } label: {
+                        Text("Tap me !")
+                    }
+                    NavigationLink(destination: SecondaryView(), isActive: $isPresented){
+                        EmptyView()
+                    }
+                }
+                .padding()
+            }
         }
     }
 }
-
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView(contentPresenter: ContentPresenter(interactor: ContentInteractor(), router: ContentRouter()))

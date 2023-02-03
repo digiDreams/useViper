@@ -22,6 +22,10 @@ class ContentPresenter: ObservableObject {
         greeting = interactor.greetingClick()
         router.showSecondaryView(isPresented: isPresented)
     }
+    func someName() {
+        // Add navigaiton method here from router
+    }
+    
     
     
 }
