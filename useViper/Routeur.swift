@@ -14,6 +14,8 @@ class ContentRouter { // pas de type
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0){ // ou + Double(1)
             isPresented.wrappedValue.toggle()
             
+            
+            
             /*func dispatchNavigation(valueOne: String, valueTwo: String) {
                 if #available(iOS 16, *) {
                     NavigationPath(value: valueOne, label: valueTwo)

@@ -11,18 +11,18 @@ import SwiftUI
 // Modèle de données.
 // On change le nom de greeting demain.
 
-protocol User {
-    func greetingSomeone()
+protocol User: Hashable {
+    func greetingSomeone() -> String
     var description: String {get set}
 }
 
-class UserName {
+struct UserName: Hashable {
+    
     var userName: String
-    init(userName: String) {
-        self.userName = userName
-    }
     func greetingSomeone(name: String) -> String {
-        return ("Hello ! My name is \(name), nice to meet you !")
+        return "Hello ! My name is \(name), nice to meet you !"
     }
 }
+
+var userNamesList: [UserName] = [UserName(userName: "Zhang"), UserName(userName: "Xin"), UserName(userName: "RaoHong"), UserName(userName: "PeiPei")]
 

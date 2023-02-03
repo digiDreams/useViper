@@ -23,8 +23,10 @@ class ContentPresenter: ObservableObject {
         router.showSecondaryView(isPresented: isPresented)
     }
     func someName() {
+        
         // Add navigaiton method here from router
     }
+    
     
     
     

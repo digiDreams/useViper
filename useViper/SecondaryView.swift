@@ -8,8 +8,15 @@
 import SwiftUI
 
 struct SecondaryView: View {
+    
     var body: some View {
-        Text("123 vive les crêpes.")
+        VStack {
+            List(userNamesList, id: \.self) { singleUser in
+                Text(singleUser.greetingSomeone(name: singleUser.userName))
+                
+            }
+            Text("123 vive les crêpes.")
+        }
     }
 }
 
